@@ -6,10 +6,11 @@
       <sourceFolder url="file://$MODULE_DIR$/audio" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/images" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="core" level="project" />
-    <orderEntry type="library" name="audio" level="project" />
+    <orderEntry type="library" name="Audio" level="project" />
   </component>
 </module>

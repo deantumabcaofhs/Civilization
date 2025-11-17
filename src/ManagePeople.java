@@ -9,13 +9,13 @@ public class ManagePeople {
     static ArrayList<Person> personList = new ArrayList<>();
     public static void generateWorker(int row, int col) {
         Worker worker = new Worker(row, col);
-        savedDay = Game.day;
+        savedDay = Main.day;
         savedWorkerIndex = personList.size();
         personList.add(worker);
         Simulation.workerAmt--;
     }
 
-    public static void selectPerson(Game window){
+    public static void selectPerson(Main window){
         //selects clicked Worker and unselects other workers
         for (Tile t : ManageTiles.tileList) {
             for (Person p : ManagePeople.personList) {
@@ -33,7 +33,7 @@ public class ManagePeople {
         }
     }
 
-    public static void movePerson(Game window){
+    public static void movePerson(Main window){
         for (Tile t : ManageTiles.tileList) {
             for (int i = 0; i < personList.size(); i++) {
                 Person p = personList.get(i);
@@ -106,7 +106,7 @@ public class ManagePeople {
         for (Tile t2 : ManageTiles.tileList) {
             for (Person p2 : personList) {
                 if (t2.row == p2.row && t2.col == p2.col) {
-                    if((Game.staticMouseX/100) == t2.row && (Game.staticMouseY/100) == t2.col) {
+                    if((Main.staticMouseX/100) == t2.row && (Main.staticMouseY/100) == t2.col) {
                         workerOnTile = true;
                     }
                 }

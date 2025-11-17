@@ -1,26 +1,22 @@
 <img src="images/logo.png">  
 
-<img src="images/D&N Games Logo2.png" width="50"> By Dean Tumabcao & Alan McWilliams for a high school assignment. Coded with Java, coffee (get it?) and love. Dean overdid it.
+<img src="images/D&N Games Logo2.png" width="50"> By Dean Tumabcao & Alan McWilliams for a high school assignment. Coded with Java, Processing, and love. Dean overdid it.
 
-# Version 1.0.1
+# Version 1.0.3
 
-## Includes  
-**Latest Major**
+## Latest Release Notes 
+**Major update**
 * "Official" release
 * Added version to bottom-right of title screen
 * Removed workers when resetting game
 
-**Latest Patch**
-* Stopped # of workers from decreasing when trying to place worker on tile already occupied by a worker
-* Added looping background music
-* Fixed colors of worker on selected tile info to be accurate to selected place type
-* Added worker placeable in feature to ℹ️ Stat-Sheet
-* Improved README
-* Changed image and code names
-
-**Latest Minor**
-* RELEASED an EXE!
+**Minor update**
+* RELEASED an executable!
 * Changed code accessing a directory
+
+**Patch update**
+* Fixed text in Stat-Sheet displaying in wrong color based on variables
+* Fixed the ability to place workers when avainle workers is 0
 
 ## About
 A video game where you can manage a civilization.
@@ -36,12 +32,12 @@ the Galactic Empire, what happens to them is _your_ call.
 #### 🧭 How To Navigate Civilization's UI
 * 🗺️ The 81 squares on the left side of the UI make up 🗺️ The World View, which consists of interactive "tiles" of The World that you can manipulate.
 * 🎛️ The buttons on the right side of the UI make up the 🎛️ Place Controls, 
-which consists of buttons that allow you to manipulate 🗺️ The World View to your vision.
+which consists of buttons that allow you to manipulate The World to your vision.
 * ℹ️ The text between those makes up the ℹ️ Stat-Sheet, which details information
 about your civilization, its world, and your selected place type.
 * ⚠️ If a number variable turns red, this means that it is relatively low or 0.
 #### 🧩 The Fundamentals
-* ➡️ You start the Game with 20 people, 500 food, 10 workers, 20 wood and 20 stone.
+* ➡️ You start the Main with 20 people, 500 food, 10 workers, 20 wood and 20 stone.
 * 🍉 Each person needs 1 piece of food to live for a day.
 * 🌓 Half of the population are workers.
 * 👷 Workers are shown in 🗺️ The World View with a <img src="images/worker.png" width="25">.
@@ -72,6 +68,6 @@ and click on it to place your selected Place type there.
 * 🔙 Click the Undo button to undo placements with the Undo button when the text 
 lights up.
 #### 🌐 Miscellaneous
-* 🔚 Press the "R" key to reset Game progress & return to title screen.
+* 🔚 Press the "R" key to reset Main progress & return to title screen.
 
 #### Good luck being a god!

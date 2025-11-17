@@ -57,7 +57,7 @@ public class ManageTiles {
         Simulation.wood -= Mine.cost;
         savedOldTile = oldTile;
         savedTileIndex = i;
-        savedDay = Game.day;
+        savedDay = Main.day;
     }
 
     public static void placeFarm(int i){
@@ -72,7 +72,7 @@ public class ManageTiles {
         Simulation.wood -= Farm.cost;
         savedOldTile = oldTile;
         savedTileIndex = i;
-        savedDay = Game.day;
+        savedDay = Main.day;
     }
     public static void placeLaboratory(int i){
         Tile oldTile = tileList.get(i);
@@ -86,7 +86,7 @@ public class ManageTiles {
         Simulation.stone -= Laboratory.cost;
         savedOldTile = oldTile;
         savedTileIndex = i;
-        savedDay = Game.day;
+        savedDay = Main.day;
     }
     public static void placeLumberyard(int i){
         Tile oldTile = tileList.get(i);
@@ -100,6 +100,6 @@ public class ManageTiles {
         Simulation.wood -= Lumberyard.cost;
         savedOldTile = oldTile;
         savedTileIndex = i;
-        savedDay = Game.day;
+        savedDay = Main.day;
     }
 }

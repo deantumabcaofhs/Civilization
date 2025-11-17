@@ -45,6 +45,6 @@ public class Simulation {
                 }
             }
         }
-        Game.day++;
+        Main.day++;
     }
 }

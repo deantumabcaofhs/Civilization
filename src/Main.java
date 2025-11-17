@@ -4,12 +4,11 @@ import tiles.terrain.*;
 import people.*;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 import ddf.minim.Minim;
 import ddf.minim.AudioPlayer;
-import processing.core.PImage;
 
-public class Game extends PApplet {
-    // TODO: declare Game variables
+public class Main extends PApplet {
     Minim minim;
     AudioPlayer bgm,bgm2,bgm3,bgm4;
     PImage icon;
@@ -22,17 +21,21 @@ public class Game extends PApplet {
     boolean canSelectWorker = true;
     boolean pressRegisters = true;
     static int staticMouseX, staticMouseY;
+    boolean canPlayMusic = false;
+
+    @Override
     public void settings() {
         size(1600, 900);   // set the window size
     }
 
+    @Override
     public void setup() {
         surface.setTitle("Civilization "+Display.version); //App titlebar name
         surface.setResizable(true);
         if(displayWidth == 1920 && displayHeight == 1080) {
             surface.setLocation(1920/2-1600/2,(1080-100)/2-900/2);
         }
-        surface.setFrameRate(240);
+
         icon = loadImage("images/civilizationLogo.png");
         surface.setIcon(icon);
 
@@ -70,6 +73,7 @@ public class Game extends PApplet {
         ManageTiles.generateTerrain();
     }
 
+    @Override
     public void draw() {
         background(255);
 
@@ -90,20 +94,24 @@ public class Game extends PApplet {
 
             speedTimeFeature();
 
-            boolean hoveringOverTile = false;
-            for (int i = 0; i < 81; i++) {
-                Tile newTile = ManageTiles.tileList.get(i);
-                if (mouseOn(newTile.x, newTile.y, Tile.w, Tile.h)) {
-                    hoveringOverTile = true;
-                    Display.tileIndex = i;
-                    newTile.hoveredOver = true;
-                }else{
-                    newTile.hoveredOver = false;
-                }
+            hoveringOverTile();
+        }
+    }
+
+    public void hoveringOverTile(){
+        boolean hoveringOverTile = false;
+        for (int i = 0; i < 81; i++) {
+            Tile newTile = ManageTiles.tileList.get(i);
+            if (mouseOn(newTile.x, newTile.y, Tile.w, Tile.h)) {
+                hoveringOverTile = true;
+                Display.tileIndex = i;
+                newTile.hoveredOver = true;
+            }else{
+                newTile.hoveredOver = false;
             }
-            if (!hoveringOverTile){
-                Display.tileIndex = -1;
-            }
+        }
+        if (!hoveringOverTile){
+            Display.tileIndex = -1;
         }
     }
 
@@ -111,7 +119,7 @@ public class Game extends PApplet {
         return staticMouseX >= x && staticMouseX <= x + w && staticMouseY >= y && staticMouseY <= y + h ;
     }
 
-
+    @Override
     public void mousePressed() {
         if(!inGame){
             textSize(45);
@@ -206,7 +214,7 @@ public class Game extends PApplet {
                             }
                         }
 
-                        if (!isOccupied && mouseOn(t.row * 100, t.col * 100, 100, 100)) {
+                        if (!isOccupied && Simulation.workerAmt > 0 && mouseOn(t.row * 100, t.col * 100, 100, 100)) {
                             // If the Tile is not occupied and the mouse is on it, add a new Worker
                             ManagePeople.generateWorker(t.row,t.col);
                         }
@@ -219,6 +227,7 @@ public class Game extends PApplet {
         }
     }
 
+    @Override
     public void mouseReleased(){
         pressRegisters = true;
         canSelectWorker = ManagePeople.selected == null;
@@ -239,6 +248,7 @@ public class Game extends PApplet {
         }
     }
 
+    @Override
     public void keyReleased(){
         if (key == ' ' && !holdingNextTurn) {
             Simulation.simulateOneTick();
@@ -248,20 +258,22 @@ public class Game extends PApplet {
     }
 
     public void manageBGM(){
-        if(!bgm.isPlaying() && !bgm2.isPlaying() && !bgm3.isPlaying() && !bgm4.isPlaying()) {
-            int x = (int) (Math.random() * 10);
-            if (x < 3) {
-                bgm.rewind();
-                bgm.play();
-            } else if (x < 6) {
-                bgm2.rewind();
-                bgm2.play();
-            } else if (x < 9) {
-                bgm3.rewind();
-                bgm3.play();
-            } else {
-                bgm4.rewind();
-                bgm4.play();
+        if(canPlayMusic) {
+            if (!bgm.isPlaying() && !bgm2.isPlaying() && !bgm3.isPlaying() && !bgm4.isPlaying()) {
+                int x = (int) (Math.random() * 10);
+                if (x < 3) {
+                    bgm.rewind();
+                    bgm.play();
+                } else if (x < 6) {
+                    bgm2.rewind();
+                    bgm2.play();
+                } else if (x < 9) {
+                    bgm3.rewind();
+                    bgm3.play();
+                } else {
+                    bgm4.rewind();
+                    bgm4.play();
+                }
             }
         }
     }
@@ -284,15 +296,15 @@ public class Game extends PApplet {
     }
 
     public static boolean canUndoTile(){
-        return ManageTiles.savedTileIndex >= 0 && ManageTiles.savedDay == Game.day;
+        return ManageTiles.savedTileIndex >= 0 && ManageTiles.savedDay == Main.day;
     }
 
     public static boolean canUndoPerson(){
-        return ManagePeople.savedWorkerIndex >= 0 && ManagePeople.savedDay == Game.day;
+        return ManagePeople.savedWorkerIndex >= 0 && ManagePeople.savedDay == Main.day;
     }
 
     public static boolean isWorkerOnSelectedTile(){
-        Game instance =  new Game();
+        Main instance =  new Main();
         for(Tile t : ManageTiles.tileList){
             for(Person p : ManagePeople.personList){
                 if(t.row == p.row && t.col == p.col){
@@ -316,6 +328,6 @@ public class Game extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("Game");
+        PApplet.main("Main");
     }
 }
